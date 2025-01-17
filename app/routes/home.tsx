@@ -10,14 +10,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const daysToEnd = differenceInDays(new Date(2025, 3, 30), new Date());
   function checkIfPassed(index: number) {
-    return differenceInDays(new Date(2025, 3, 30), new Date()) < index;
+    return daysToEnd < index;
   }
 
   return (
     <div className="flex justify-center">
-      <Card>
-        <h1 className="text-4xl text-center m-2"> 100 Board</h1>
+      <Card className="gap-2 flex flex-col">
+        <h1 className="text-4xl text-center"> 100 Board</h1>
+        <h3 className="text-2xl text-center">{daysToEnd} days until the end</h3>
         <CardContent className="grid grid-rows-10 grid-cols-10 gap-2">
           {Array(100)
             .fill(null)
