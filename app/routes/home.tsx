@@ -17,10 +17,16 @@ export function checkIfPassed(index: number) {
 export const theDate = new Date(2025, 3, 30);
 
 export default function Home() {
+  const daysToEnd = differenceInDays(new Date(2025, 3, 30), new Date());
+  function checkIfPassed(index: number) {
+    return daysToEnd < index;
+  }
+
   return (
-    <div className="flex justify-center bg-[url(/board.jpg)]">
-      <Card className="bg-inherit backdrop-blur-sm bg-opacity-5">
-        <h1 className="text-5xl text-center p-2 text-white"> 100 Board</h1>
+    <div className="flex justify-center">
+      <Card className="gap-2 flex flex-col">
+        <h1 className="text-4xl text-center"> 100 Board</h1>
+        <h3 className="text-2xl text-center">{daysToEnd} days until the end</h3>
         <CardContent className="grid grid-rows-10 grid-cols-10 gap-2">
           {Array(100)
             .fill(null)
