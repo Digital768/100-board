@@ -1,8 +1,12 @@
-import { subDays } from "date-fns";
+import { differenceInDays, subDays } from "date-fns";
 import { cn } from "~/lib/utils";
-import { checkIfPassed, theDate } from "~/routes/home";
 
-function FlipingCard({ index }: { index: number }) {
+function FlipingCard({ index, theDate }: { index: number; theDate: Date }) {
+  
+  function checkIfPassed(index: number) {
+    return differenceInDays(theDate, new Date()) <= index;
+  }
+
   const isPassed = checkIfPassed(index);
   return (
     <div className="mx-auto flex justify-center object-center">

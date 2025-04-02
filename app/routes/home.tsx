@@ -1,4 +1,3 @@
-import { differenceInDays } from "date-fns";
 import FlipingCard from "~/components/FlipingCard";
 import { Card, CardContent } from "~/components/ui/card";
 import type { Route } from "./+types/home";
@@ -10,27 +9,19 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export function checkIfPassed(index: number) {
-  return differenceInDays(theDate, new Date()) <= index;
-}
-
-export const theDate = new Date(2025, 3, 30);
+export const theDate = new Date(2025, 3, 29);
 
 export default function Home() {
-  const daysToEnd = differenceInDays(new Date(2025, 3, 30), new Date());
-  function checkIfPassed(index: number) {
-    return daysToEnd < index;
-  }
-
   return (
-    <div className="flex justify-center">
-      <Card className="gap-2 flex flex-col">
+    <div className="flex justify-center bg-primary-foreground">
+      <Card className="gap-2 flex flex-col bg-inherit/90 bg-opacity-25 shadow-md shadow-slate-300">
         <h1 className="text-4xl text-center"> 100 Board</h1>
-        <h3 className="text-2xl text-center">{daysToEnd} days until the end</h3>
-        <CardContent className="grid grid-rows-10 grid-cols-10 gap-2">
+        <CardContent className="grid grid-rows-10 grid-cols-10 gap-2 ">
           {Array(100)
             .fill(null)
-            .map((v, index) => <FlipingCard index={index} key={v} />)
+            .map((v, index) => (
+              <FlipingCard index={index} theDate={theDate} key={v} />
+            ))
             .reverse()}
         </CardContent>
       </Card>
